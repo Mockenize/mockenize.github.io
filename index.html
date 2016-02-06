@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mockenize by Mockenize</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Mockenize</h1>
+      <h2 class="project-tagline">REST API Testing Toolkit</h2>
+    </section>
+
+    <section class="main-content">
+      <p>The complete app for mock your responses.</p>
+
+<p>Mockenize is an efficient server to mock, supports random responses, timeout and any media type. To store the responses, Mockenize uses Hazelcast and to run the standalone server uses Spring Boot.
+Mockenize is free and open source. Contribute if you want!</p>
+
+<p><a href="https://travis-ci.org/Mockenize/mockenize"><img src="https://travis-ci.org/Mockenize/mockenize.svg?branch=master" alt="Build Status"></a></p>
+
+<h1>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h1>
+
+<ul>
+<li>Running the server</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>java -jar mockenize-x.x.x.jar --server.port=<span class="pl-c1">8090</span> (default port is <span class="pl-c1">8080</span>)</pre></div>
+
+<ul>
+<li>Adding basic responses mocks</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
+{
+  <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/my_url/test<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>method<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>responseCode<span class="pl-pds">"</span></span> : <span class="pl-c1">202</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Response success!!!<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>headers<span class="pl-pds">"</span></span> : {
+      <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>text/plain<span class="pl-pds">"</span></span>
+  }
+}</pre></div>
+
+<ul>
+<li>Adding multiple responses mocks. The responses will return at random.</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
+{
+  <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/my_url/test<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>method<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>values<span class="pl-pds">"</span></span> : [
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>responseCode<span class="pl-pds">"</span></span> : <span class="pl-c1">202</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Response success!!!<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>headers<span class="pl-pds">"</span></span> : {
+          <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>text/plain<span class="pl-pds">"</span></span>
+      }
+    },
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>responseCode<span class="pl-pds">"</span></span> : <span class="pl-c1">500</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Response fail!!!<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>headers<span class="pl-pds">"</span></span> : {
+          <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>text/plain<span class="pl-pds">"</span></span>
+      }
+    }
+  ]
+}</pre></div>
+
+<ul>
+<li>Using timeout response. (5 seconds)</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
+{
+  <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/my_url/test<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>method<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>timeout<span class="pl-pds">"</span></span> : <span class="pl-c1">5</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>responseCode<span class="pl-pds">"</span></span> : <span class="pl-c1">202</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Response success!!!<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>headers<span class="pl-pds">"</span></span> : {
+      <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>text/plain<span class="pl-pds">"</span></span>
+  }
+}</pre></div>
+
+<ul>
+<li>Using interval timeout response. (5 at 10 seconds)</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
+{
+  <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/my_url/test<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>method<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>minTimeout<span class="pl-pds">"</span></span> : <span class="pl-c1">5</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>maxTimeout<span class="pl-pds">"</span></span> : <span class="pl-c1">10</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>responseCode<span class="pl-pds">"</span></span> : <span class="pl-c1">202</span>,
+  <span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Response success!!!<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>headers<span class="pl-pds">"</span></span> : {
+      <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>text/plain<span class="pl-pds">"</span></span>
+  }
+}</pre></div>
+
+<ul>
+<li>Clearing all responses mocks</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>DELETE http://localhost:<span class="pl-c1">8080</span>/_mockenize/clearAll</pre></div>
+
+<ul>
+<li>Clearing unique or multiple response mock</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>DELETE http://localhost:<span class="pl-c1">8080</span>/_mockenize
+
+[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/my_url/test<span class="pl-pds">"</span></span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/my_second_url/test<span class="pl-pds">"</span></span>
+  }
+]</pre></div>
+
+<ul>
+<li>Use the admin to easily create your mocks.</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>http://localhost:<span class="pl-c1">8080</span>/_mockenize/index.html</pre></div>
+
+<p><img src="http://i.imgur.com/yda2C8u.png" alt="Mockenize"></p>
+
+      <footer class="site-footer">
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
