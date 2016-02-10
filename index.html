@@ -26,15 +26,13 @@ Mockenize is free and open source. Contribute if you want!</p>
 <h1>
 <a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h1>
 
-<ul>
-<li>Running the server</li>
-</ul>
+<h2>
+<a id="running-the-server" class="anchor" href="#running-the-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running the server</h2>
 
 <div class="highlight highlight-source-json"><pre>java -jar mockenize-x.x.x.jar --server.port=<span class="pl-c1">8090</span> (default port is <span class="pl-c1">8080</span>)</pre></div>
 
-<ul>
-<li>Adding basic responses mocks</li>
-</ul>
+<h2>
+<a id="adding-basic-responses-mocks" class="anchor" href="#adding-basic-responses-mocks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding basic responses mocks</h2>
 
 <div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
 {
@@ -47,9 +45,8 @@ Mockenize is free and open source. Contribute if you want!</p>
   }
 }</pre></div>
 
-<ul>
-<li>Adding multiple responses mocks. The responses will return at random.</li>
-</ul>
+<h2>
+<a id="adding-multiple-responses-mocks-the-responses-will-return-at-random" class="anchor" href="#adding-multiple-responses-mocks-the-responses-will-return-at-random" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding multiple responses mocks. The responses will return at random.</h2>
 
 <div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
 {
@@ -73,9 +70,8 @@ Mockenize is free and open source. Contribute if you want!</p>
   ]
 }</pre></div>
 
-<ul>
-<li>Using timeout response. (5 seconds)</li>
-</ul>
+<h2>
+<a id="using-timeout-response-5-seconds" class="anchor" href="#using-timeout-response-5-seconds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using timeout response. (5 seconds)</h2>
 
 <div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
 {
@@ -89,9 +85,8 @@ Mockenize is free and open source. Contribute if you want!</p>
   }
 }</pre></div>
 
-<ul>
-<li>Using interval timeout response. (5 at 10 seconds)</li>
-</ul>
+<h2>
+<a id="using-interval-timeout-response-5-at-10-seconds" class="anchor" href="#using-interval-timeout-response-5-at-10-seconds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using interval timeout response. (5 at 10 seconds)</h2>
 
 <div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize
 {
@@ -111,9 +106,8 @@ Mockenize is free and open source. Contribute if you want!</p>
 
 <div class="highlight highlight-source-json"><pre>DELETE http://localhost:<span class="pl-c1">8080</span>/_mockenize/clearAll</pre></div>
 
-<ul>
-<li>Clearing unique or multiple response mock</li>
-</ul>
+<h2>
+<a id="clearing-unique-or-multiple-response-mock" class="anchor" href="#clearing-unique-or-multiple-response-mock" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Clearing unique or multiple response mock</h2>
 
 <div class="highlight highlight-source-json"><pre>DELETE http://localhost:<span class="pl-c1">8080</span>/_mockenize
 
@@ -126,11 +120,10 @@ Mockenize is free and open source. Contribute if you want!</p>
   }
 ]</pre></div>
 
-<ul>
-<li>Use the admin to easily create your mocks.
-<img src="http://i.imgur.com/t34f0x1.png" alt="Mockenize">
-</li>
-</ul>
+<h2>
+<a id="use-the-admin-to-easily-create-your-mocks" class="anchor" href="#use-the-admin-to-easily-create-your-mocks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use the admin to easily create your mocks.</h2>
+
+<p><img src="http://i.imgur.com/t34f0x1.png" alt="Mockenize"></p>
 
       <footer class="site-footer">
 
