@@ -66,13 +66,40 @@ Mockenize is free and open source. Contribute if you want!</p>
 }</pre></div>
 
 <ul>
-<li>Adding multiple responses mocks. The responses will return at random.</li>
+<li>Adding multiple responses mocks. The responses will return at sequential.</li>
 </ul>
 
 <div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize/mocks
 {
   <span class="pl-s"><span class="pl-pds">"</span>path<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/foo/bar<span class="pl-pds">"</span></span>,
   <span class="pl-s"><span class="pl-pds">"</span>method<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>values<span class="pl-pds">"</span></span> : [
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>status<span class="pl-pds">"</span></span> : <span class="pl-c1">202</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Response success!!!<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>headers<span class="pl-pds">"</span></span> : {
+          <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>text/plain<span class="pl-pds">"</span></span>
+      }
+    },
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>status<span class="pl-pds">"</span></span> : <span class="pl-c1">500</span>,
+      <span class="pl-s"><span class="pl-pds">"</span>body<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Response fail!!!<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>headers<span class="pl-pds">"</span></span> : {
+          <span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>text/plain<span class="pl-pds">"</span></span>
+      }
+    }
+  ]
+}</pre></div>
+
+<ul>
+<li>Adding multiple aleatory responses mocks. The return responses at random.</li>
+</ul>
+
+<div class="highlight highlight-source-json"><pre>POST http://localhost:<span class="pl-c1">8080</span>/_mockenize/mocks
+{
+  <span class="pl-s"><span class="pl-pds">"</span>path<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>/foo/bar<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>method<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>random<span class="pl-pds">"</span></span> : <span class="pl-c1">true</span>,
   <span class="pl-s"><span class="pl-pds">"</span>values<span class="pl-pds">"</span></span> : [
     {
       <span class="pl-s"><span class="pl-pds">"</span>status<span class="pl-pds">"</span></span> : <span class="pl-c1">202</span>,
